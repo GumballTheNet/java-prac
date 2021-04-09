@@ -1,0 +1,24 @@
+<?xml version = "1.0" encoding = "utf-8"?>
+<project basedir = "." default = "build" name = "build">
+    <property file = "../build.properties"/>
+
+    <path id = "classpath.master">
+        <fileset dir = "lib">
+        	<include name="*.jar"/>
+        </fileset>
+        <pathelement path = "out/car_showroom"/>
+    </path>
+
+    <target name = "build">
+        <mkdir dir ="out/car_showroom"/>
+        <copy file="src/hibernate.cfg.xml" todir="out/car_showroom"/>
+	    <copy file="src/link.hbm.xml" todir="out/car_showroom"/>
+        <javac includeantruntime = "false"
+               destdir = "out/car_showroom"
+               source = "8"
+               target = "8">
+            <src path = "src"/>
+            <classpath refid = "classpath.master"/>
+        </javac>
+    </target>
+</project>
